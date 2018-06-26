@@ -88,5 +88,25 @@
       become: yes
       become_method: sudo
 
-    
+    - name: Install dependencies required to setup a new version of Python
+      sudo: yes
+      pip: name={{ item }} state=latest
+      tags: [packages]
+      become: yes
+      become_method: sudo
+      with_items:
+        - beautifulsoup4
+        - blinker
+        - XlsxWriter
+        - xlwt
+        - slackclient
+        - slacker
+        - urllib3
+        - selenium
+        - html5lib
+        - httplib2
+        - lxml
+        - pprint
+        
+
 
