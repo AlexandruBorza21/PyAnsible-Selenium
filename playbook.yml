@@ -8,7 +8,6 @@
       become_method: sudo
 
     - name: Install dependencies required to setup a new version of Python
-      sudo: yes
       yum: name=yum-utils state=latest
       become: yes
       become_method: sudo
@@ -33,49 +32,38 @@
       yum: name=python34-setuptools state=latest
       become: yes
       become_method: sudo
+
     - name: pip
       yum: name=python-pip state=latest
       become: yes
       become_method: sudo
       
     - name: "Install Python packages xlwt"
-      sudo: yes
       yum: name=python-xlwt state=latest
       become: yes
       become_method: sudo
  
     - name: "Install Python packages selenium"
-      sudo: yes
       pip: name=selenium 
       become: yes
       become_method: sudo
 
     - name: "Install Python pyvirtualdisplay"
-      sudo: yes
       pip: name=pyvirtualdisplay #state=latest
       become: yes
       become_method: sudo
-
-    - name: "Install Python Firefox"
-      sudo: yes
-      yum: name=firefox state=latest
-      become: yes
-      become_method: sudo
     
-    - name: "Install Python Firefox"
-      sudo: yes
+    - name: "Install Python Xvfb"
       yum: name=Xvfb state=latest
       become: yes
       become_method: sudo
     
     - name: Install unzip
-      sudo: yes
       yum: name=unzip state=latest
       become: yes
       become_method: sudo
 
     - name: Install tar
-      sudo: yes
       yum: name=tar state=latest
       become: yes
       become_method: sudo
@@ -88,8 +76,22 @@
       become: yes
       become_method: sudo
 
+    - name: Install csv
+      yum: name=csv state=latest
+      become: yes
+      become_method: sudo
+    
+    - name: Install vim
+      yum: name=vim state=latest
+      become: yes
+      become_method: sudo
+
+    - name: Install Chrome
+      yum: name=https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm 
+      become: yes
+      become_method: sudo
+
     - name: Install dependencies required to setup a new version of Python
-      sudo: yes
       pip: name={{ item }} state=latest
       tags: [packages]
       become: yes
@@ -107,6 +109,8 @@
         - httplib2
         - lxml
         - pprint
-        
+        - requests
+        - Pillow
+
 
 
