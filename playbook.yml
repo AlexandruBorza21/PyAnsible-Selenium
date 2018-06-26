@@ -13,7 +13,7 @@
       become: yes
       become_method: sudo
 
-    - name: Install gcc
+    - name: Install dependencies 
       sudo: yes
       yum: name=gcc state=latest
       become: yes
@@ -68,5 +68,25 @@
       become: yes
       become_method: sudo
     
- 
+    - name: Install unzip
+      sudo: yes
+      yum: name=unzip state=latest
+      become: yes
+      become_method: sudo
+
+    - name: Install tar
+      sudo: yes
+      yum: name=tar state=latest
+      become: yes
+      become_method: sudo
+
+    - name: Unarchive chromedriver
+      unarchive:
+        src: https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
+        dest: /usr/bin
+        remote_src: yes
+      become: yes
+      become_method: sudo
+
+    
 
