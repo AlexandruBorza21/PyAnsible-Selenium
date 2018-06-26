@@ -1,0 +1,72 @@
+---
+- hosts: default
+  remote_user: vagrant
+  tasks:
+    - name: upgrade all packages
+      yum: name=* state=latest
+      become: yes
+      become_method: sudo
+
+    - name: Install dependencies required to setup a new version of Python
+      sudo: yes
+      yum: name=yum-utils state=latest
+      become: yes
+      become_method: sudo
+
+    - name: Install gcc
+      sudo: yes
+      yum: name=gcc state=latest
+      become: yes
+      become_method: sudo
+
+    - name: epel
+      yum: name=epel-release state=latest
+      become: yes
+      become_method: sudo
+
+    - name: python34
+      yum: name=python34 state=latest
+      become: yes
+      become_method: sudo
+
+    - name: pip3
+      yum: name=python34-setuptools state=latest
+      become: yes
+      become_method: sudo
+    - name: pip
+      yum: name=python-pip state=latest
+      become: yes
+      become_method: sudo
+      
+    - name: "Install Python packages xlwt"
+      sudo: yes
+      yum: name=python-xlwt state=latest
+      become: yes
+      become_method: sudo
+ 
+    - name: "Install Python packages selenium"
+      sudo: yes
+      pip: name=selenium 
+      become: yes
+      become_method: sudo
+
+    - name: "Install Python pyvirtualdisplay"
+      sudo: yes
+      pip: name=pyvirtualdisplay #state=latest
+      become: yes
+      become_method: sudo
+
+    - name: "Install Python Firefox"
+      sudo: yes
+      yum: name=firefox state=latest
+      become: yes
+      become_method: sudo
+    
+    - name: "Install Python Firefox"
+      sudo: yes
+      yum: name=Xvfb state=latest
+      become: yes
+      become_method: sudo
+    
+ 
+
